@@ -33,7 +33,7 @@ class ViewPost extends Component {
               'charity': d.charity,
               'hashtags': d.hashtags,
               'imageUrl': d.imageUrl,
-              'moneyRaised': d.amountRaised,
+              'moneyRaised': d.moneyRaised,
               'noLikes': d.noLikes,
               'subtitle': d.subtitle,
               'targetAmount': d.targetAmount,
@@ -73,30 +73,30 @@ class ViewPost extends Component {
                 <div>{this.state.charity}</div>
             </div>
             {/* video/image */}
-            <div>
+            <div className="row center">
                 { this.isVideo() ? <video controls className="post-image" src={this.state.imageUrl}/> : <img className="post-image" src={this.state.imageUrl}></img>}
             </div>
             {/* text container: title, descr., money raised all in this */}
-            <div>
+            <div className="mb">
                 <h2>{this.state.title}</h2>
                 <p>{this.state.subtitle}</p>
                 <div>
                     <div class="progress-container">
-                        <div class="progress-bar"></div>
+                        <div class="progress-bar" style={{'width': (100*this.state.moneyRaised/this.state.targetAmount).toString()+'%'}}></div>
                     </div>
-                    £{this.state.targetAmount} raised of £{this.state.targetAmount} target.
+                    £{this.state.moneyRaised} raised of £{this.state.targetAmount} target.
                 </div>
             </div>
             {/* Icon panel: likes, comments, share button */}
-            <div className="row space-apart">
-                <div>{this.state.noLikes}</div>
-                <div><button>Share</button></div>
+            <div className="row space-apart mb">
+                <div>{this.state.noLikes} Likes</div>
+                <div>Share</div>
             </div>
             {/* Time since post */}
-            <div>17 hour(s) ago*****</div>
+            <div className="mb">17 hour(s) ago</div>
             {/* Donate button */}
-            <div>
-                <button>
+            <div className="row center">
+                <button className="primary-button">
                     Donate
                 </button>
             </div>
