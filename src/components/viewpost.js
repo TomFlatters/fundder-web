@@ -33,7 +33,7 @@ class ViewPost extends Component {
               'charity': d.charity,
               'hashtags': d.hashtags,
               'imageUrl': d.imageUrl,
-              'moneyRaised': '',
+              'moneyRaised': d.amountRaised,
               'noLikes': d.noLikes,
               'subtitle': d.subtitle,
               'targetAmount': d.targetAmount,
@@ -47,41 +47,50 @@ class ViewPost extends Component {
     });
   }
 
+  isVideo = () => {
+    let url = this.state.imageUrl;
+    console.log(url);
+    if (url && url!==''){
+        console.log(url.indexOf('/o/videos'));
+        return url.indexOf('/o/videos')===-1 ? false : true;
+    } else {
+        return false
+    }
+  }
+
   render(){
     return (
       <div className="App">
-        <h1>Fundder Web</h1>
-        <div>
-          <h2>Data:</h2>
-          <p>
-            {this.state.title}<br/>
-            {this.state.authorUsername}<br/>
-            {this.state.hashtags}<br/>
-            {this.state.charity}
-          </p>
-        </div>
         {/* container */}
-        <div>
+        <div className="post-container">
+            <div className="post-container-inner">
             {/* row for author name, pic and charity logo */}
-            <div className="row">
-                
+            <div className="row space-apart mb">
+                <div className="row">
+                    <div>pic</div>
+                    <div className="pl">{this.state.authorUsername}</div>
+                </div>
+                <div>{this.state.charity}</div>
             </div>
-            {/* image */}
+            {/* video/image */}
             <div>
-            {this.state.imageUrl}
-            <img src={this.state.imageUrl}></img>
+                { this.isVideo() ? <video controls className="post-image" src={this.state.imageUrl}/> : <img className="post-image" src={this.state.imageUrl}></img>}
             </div>
             {/* text container: title, descr., money raised all in this */}
             <div>
-                <h2>Title</h2>
-                <p>Description</p>
+                <h2>{this.state.title}</h2>
+                <p>{this.state.subtitle}</p>
                 <div>
-                    Money raised indicator
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    £{this.state.targetAmount} raised of £{this.state.targetAmount} target.
                 </div>
             </div>
             {/* Icon panel: likes, comments, share button */}
-            <div className="row">
-
+            <div className="row space-apart">
+                <div>{this.state.noLikes}</div>
+                <div><button>Share</button></div>
             </div>
             {/* Time since post */}
             <div>17 hour(s) ago*****</div>
@@ -91,6 +100,7 @@ class ViewPost extends Component {
                     Donate
                 </button>
             </div>
+        </div>
         </div>
       </div>
     );
