@@ -37,6 +37,7 @@ class ViewPost extends Component {
             d = post.data();
             console.log('got post data');
             this.setState({
+                'redirectUrl': "https://donate.fundder.co/anon/" + postId,
                 'title': d.title,
                 'authorUsername': d.authorUsername,
                 'userId': d.author,
@@ -83,7 +84,6 @@ class ViewPost extends Component {
   }
 
   render(){
-    console.log(this.state);
     if(this.state.postNotFound){
         return(<Redirect to='/'/>)
     }
@@ -133,7 +133,9 @@ class ViewPost extends Component {
                 {/* Donate button */}
                 <div className="row center px">
                     <button className="primary-button">
-                        Donate
+                        <a href={this.state.redirectUrl}>
+                            Donate
+                        </a>
                     </button>
                 </div>
             </div>
