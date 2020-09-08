@@ -160,12 +160,15 @@ class ViewPost extends Component {
                 <div className="w-300 mb2 px2">{this.howLongAgo(this.state.timestamp)}</div>
                 {/* Donate button */}
                 <div className="row center px">
-                    <button className="primary-button">
+                    <div className="donate-link-container">
                         <a href={this.state.redirectUrl}>
-                            Donate
+                            <button className="primary-button">
+                                Donate
+                            </button>
                         </a>
-                    </button>
+                    </div>
                 </div>
+
             </div>
             </div>
         </div>
