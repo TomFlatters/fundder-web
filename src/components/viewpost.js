@@ -74,6 +74,34 @@ class ViewPost extends Component {
 //     });
 //   }
 
+  howLongAgo = (timestamp) => {
+      var diff = Date.now()-timestamp.toDate();
+      var daysDiff = Math.floor(diff/1000/60/60/24);
+      if (daysDiff>0){
+          return daysDiff.toString() + " day(s) ago"
+      } else {
+          diff -= daysDiff*1000*60*60*24
+      }
+      var hoursDiff = Math.floor(diff/1000/60/60);
+      if (hoursDiff>0){
+          return hoursDiff.toString() + " hour(s) ago"
+      } else {
+          diff -= hoursDiff*1000*60*60
+      }
+      var minDiff = Math.floor(diff/1000/60);
+      if (minDiff>0){
+          return minDiff.toString() + " minute(s) ago"
+      } else {
+          diff -= minDiff*1000*60
+      }
+      var secDiff = Math.floor(diff/1000);
+      if (secDiff>0){
+          return secDiff.toString() + " second(s) ago"
+      } else {
+          return "Just now"
+      }
+  }
+
   isVideo = () => {
     let url = this.state.imageUrl;
     if (url && url!==''){
@@ -129,7 +157,7 @@ class ViewPost extends Component {
                     <div className="w-500 row"><img className="like-symbol"src={share}/><div className="pl">Share</div></div>
                 </div>
                 {/* Time since post */}
-                <div className="w-300 mb2 px2">17 hour(s) ago</div>
+                <div className="w-300 mb2 px2">{this.howLongAgo(this.state.timestamp)}</div>
                 {/* Donate button */}
                 <div className="row center px">
                     <button className="primary-button">
