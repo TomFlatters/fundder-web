@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import ViewPost from './components/viewpost';
 import Home from './components/home';
 import DoFeed from './components/dofeed';
+import FundderNav from './components/funddernav';
 
 // Routing
 import {
@@ -31,6 +32,7 @@ firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
+    <FundderNav />
     <Router>
       <Switch>
         <Route exact path='/do' component={DoFeed}></Route>

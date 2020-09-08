@@ -196,3 +196,19 @@
   max-width: 50%;
   max-height: 50%;
 }
+
+.navbar{
+  width: 100vw;
+  display: flex;
+  position: fixed;
+  top:0;
+  padding: 1em;
+  font-family: 'FoundersGrotesk-Web';
+}
+
+.navbar-bear{
+  max-height: 2em;
+}
+.nav-title{
+  font-size: 1.5em;
+}
