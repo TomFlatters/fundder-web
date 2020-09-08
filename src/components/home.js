@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import '../App.css';
 
+import bear from '../img/pink_bear.png';
+
 function App() {
     return(
         <div>
-            <h1>Fundder Web</h1>
-            <div>
-                <p>
-                    Home page.
-                </p>
+            <div class="row center bear-container">
+                <img className="bear-pic" src={bear}></img>
             </div>
         </div>
     )
